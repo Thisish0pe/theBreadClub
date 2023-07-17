@@ -1,6 +1,4 @@
 from django.urls import path
-from django.conf import settings
-from django.conf.urls.static import static
 from . import views
 
 app_name = 'blog'
@@ -14,4 +12,10 @@ urlpatterns = [
     path("detail/<int:pk>/edit/", views.Update.as_view(), name = 'edit'),
     # 글 삭제
     path("detail/<int:pk>/delete/", views.Delete.as_view(), name='delete'),
-] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    # 댓글 작성
+    path("detail/<int:pk>/comment/write", views.CommentWrite.as_view(), name='cm-write'),
+    # 댓글 수정
+    path("detail/<int:pk>/comment/edit/", views.CommentUpdate.as_view(), name='cm-edit'),
+    # 댓글 삭제
+    path("detail/<int:pk>/comment/delete/", views.CommentDelete.as_view(), name='cm-delete'),
+]

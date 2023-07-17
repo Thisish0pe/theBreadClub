@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .models import Location, Post
-from .forms import PostForm
+from .models import Post, Comment
+from .forms import PostForm, CommentForm
 
 
 ### Post
@@ -73,8 +73,62 @@ class DetailView(View):
 
     def get(self, request, pk):
         post = Post.objects.get(pk=pk)
+        comments = Comment.objects.filter(post=post)
+        comment_form = CommentForm()
         context = {
             "title": "Post",
-            "post": post
+            "post": post,
+            "comments": comments,
+            "comment_form": comment_form
         }
         return render(request, 'blog/post_detail.html', context)
+
+
+### Comment
+class CommentWrite(View):
+
+    def post(self, request, pk):
+        form = CommentForm(request.POST)
+        post = Post.objects.get(pk=pk)
+
+        if form.is_valid():
+            content = form.cleaned_data['content']
+            # writer 추후 추가
+            comment = Comment.objects.create(post=post, content=content)
+            return redirect('blog:detail', pk=post.pk)
+        context = {
+            "title": "CommentWrite",
+            "post": post,
+            "form": form
+        }
+        return render(request, 'blog/post_detail.html', context)
+    
+
+class CommentUpdate(View):
+
+    def post(self, request, pk):
+        comment = Comment.objects.get(pk=pk)
+        form = CommentForm(request.POST, instance=comment)
+
+        if form.is_valid():
+            form.save()
+            return redirect('blog:detail', pk=comment.post.pk)
+
+        post = comment.post
+        comments = Comment.objects.filter(post=post)
+        context = {
+            "title": "Post",
+            "post": post,
+            "comments": comments,
+            "comment_form": form
+        }
+        return render(request, 'blog/post_detail.html', context)
+
+
+class CommentDelete(View):
+
+    def post(self, request, pk):
+        comment = Comment.objects.get(pk=pk)
+        post_id = comment.post.id
+        comment.delete()
+        return redirect('blog:detail', pk=post_id)
