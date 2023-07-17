@@ -11,6 +11,7 @@ class Post(models.Model):
     title = models.CharField(max_length=30)
     content = models.TextField()
     location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True)
+    photo = models.ImageField(blank=True, null=True)
     writer = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
