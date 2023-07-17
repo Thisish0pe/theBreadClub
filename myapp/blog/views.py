@@ -22,7 +22,7 @@ class Write(View):
             post = form.save()
             # writer 추후 변경 
             post.save()
-            return redirect('index.html')
+            return redirect('/')
         
         context = {
             "form": form
@@ -43,7 +43,7 @@ class Update(View):
         }
         return render(request, 'blog/post_edit.html', context)
     
-    def get(self, request, pk):
+    def post(self, request, pk):
         post = Post.objects.get(pk=pk)
         form = PostForm(request.POST)
         
@@ -66,7 +66,7 @@ class Delete(View):
     def post(self, request, pk):
         post = Post.objects.get(pk=pk)
         post.delete()
-        return redirect('index.html')
+        return redirect('/')
 
 
 class DetailView(View):

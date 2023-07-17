@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>
         {% block title %} {{ title }} {% endblock %}
     </title>
@@ -15,7 +16,7 @@
 			<div class="max-width">
 				<h1>
 					<a href="./">
-						<!-- <img src="./assets/Logo.svg" alt="My Blog" /> -->
+						<img src="./assets/Logo.svg" alt="My Blog" />
 					</a>
 				</h1>
 				<ul>
@@ -26,6 +27,10 @@
 						</a>
 					</li>
 					<li>
+                        <form action="{% url 'blog:write' %}" method="get">
+                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ request.GET.next }}">
+                            <input type="submit" value="글 작성">
+                        </form>
 						<a href="#" class="button">
 							<img src="./assets/icon-modify-white.svg" alt="" />
 							<span>Write</span>

@@ -12,6 +12,12 @@
         </form>
 
     <p>내용 : {{ post.content }}</p>
+    {% if post.location %}
+        <p>위치: {{ post.location.name }}</p>
+    {% endif %}
+    {% if post.photo %}
+        <img src="{{ post.photo.url }}" alt="사진">
+    {% endif %}
     <p>작성자 : {{ post.writer }}</p>
     <p>작성일 : {{ post.created_at }}</p>
     <p>수정일 : {{ post.updated_at }}</p>
