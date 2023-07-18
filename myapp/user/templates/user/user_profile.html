@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <p>{{ profile.nickname }}</p>
+    {% if post.photo %}
+        <img src="{{ post.photo.url }}" alt="사진">
+    {% endif %}
+    <p>{{ profile.blog_url }}</p>
+{% endblock %}

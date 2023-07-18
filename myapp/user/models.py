@@ -50,7 +50,7 @@ class User(AbstractUser):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    nickname = models.CharField(max_length=15)
+    nickname = models.CharField(max_length=15, default='')
     photo = models.ImageField(upload_to = "images/",blank=True, null=True)
     blog_url = models.URLField(max_length=60, blank=True, null=True)
 

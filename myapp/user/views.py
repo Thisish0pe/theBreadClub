@@ -3,6 +3,7 @@ from django.views import View
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .fomrs import RegisterForm, LoginForm
+from .models import Profile
 
 
 ### Registration
@@ -65,3 +66,17 @@ class Login(View):
         
         return render(request, 'user/user_login.html', context)
         
+
+### Logout
+
+
+### Profile
+class ProfileView(View):
+    
+    def get (self, request):
+        profile = Profile.objects.get(user=request.user)
+        context = {
+            "title": "Profile",
+            "profile": profile
+        }
+        return render(request, 'user/user_profile.html', context)

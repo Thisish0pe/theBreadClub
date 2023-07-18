@@ -23,9 +23,9 @@
           </tr>
         </thead>
         <tbody>
-            {% for post in posts %}
+            {% for post in posts reversed%}
             <tr>
-                <td>0</td>
+                <td>{{ forloop.counter1 }}</td>
                 <td><a href="{% url 'blog:detail' pk=post.pk %}">{{ post.title }}</a></td>
                 <td>{{ post.writer }}</td>
                 <td>{{ post.created_at }}</td>

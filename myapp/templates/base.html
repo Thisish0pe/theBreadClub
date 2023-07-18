@@ -31,6 +31,11 @@
 							로그인
 						</a>
 					</li>
+                    <li>
+						<a href="{% url 'user:profile' %}">
+							My Page
+						</a>
+					</li>
 					<li>
                         <form action="{% url 'blog:write' %}" method="get" class="button">
                             {% csrf_token %}
