@@ -11,11 +11,11 @@
         {% csrf_token %}
         <div>
           <label class="label-width" for="user-id">아이디{{ login.email }}</label>
-          <input type="text" id="user-id" name="userId" required>
+          <input type="text" id="user-id" name="username" required>
         </div>
         <div>
           <label class="label-width" for="user-pw">비밀번호{{ login.password }}</label>
-          <input type="password" id="user-pw" name="userPw" required>
+          <input type="password" id="user-pw" name="password" required>
         </div>
         <div>
           <input type="checkbox" id="save-id" name="saveId">

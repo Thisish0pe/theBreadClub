@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth import get_user_model
-from .models import Post, Comment
+from .models import Location, Post, Comment
 from .forms import PostForm, CommentForm
 
 
@@ -13,9 +13,11 @@ class Write(View):
     
     def get(self, request):
         form = PostForm()
+        locations = Location.objects.all()
         context = {
             "title": "PostWrite",
-            "form": form
+            "form": form,
+            "locations": locations
         }
         return render(request, 'blog/post_form.html', context)
     

@@ -5,24 +5,38 @@
     <p class="main-title">블로그 게시판 첫 화면입니다.</p>
 
     {% if posts %}
-        <table class="table table-bordered">
-            <thead class="table-light">
-                <tr>
-                    <td>제목</td>
-                    <td>작성자</td>
-                </tr>
-            </thead>
-            <tbody>
-                {% for post in posts %}
-                    <tr>
-                        <td><a href="{% url 'blog:detail' pk=post.pk %}">{{ post.title }}</a></td>
-                        <td>{{ post.writer }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p>작성된 게시물이 없습니다.</p>
-    {% endif %}
- 
+    <table class="table list">
+        <colgroup>
+          <col style="width: 60px">
+          <col>
+          <col style="width: 100px">
+          <col style="width: 120px">
+          <col style="width: 100px">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>위치</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+            <tr>
+                <td>0</td>
+                <td><a href="{% url 'blog:detail' pk=post.pk %}">{{ post.title }}</a></td>
+                <td>{{ post.writer }}</td>
+                <td>{{ post.created_at }}</td>
+                <td>{{ post.location }}</td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td class="nodata" colspan="5">등록된 게시물이 없습니다.</td>
+            </tr>
+            {% endif %}
+        </tbody>
+      </table>
 {% endblock %}

@@ -34,7 +34,7 @@ class UserManager(BaseUserManager):
 class User(AbstractUser):
     username = None
     email = models.EmailField(unique=True, max_length=255)
-    nickname = models.CharField(max_length=50, null=False, blank=False)
+    name = models.CharField(max_length=50, null=True, blank=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
@@ -46,3 +46,13 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []
     
     objects = UserManager()
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    nickname = models.CharField(max_length=15)
+    photo = models.ImageField(upload_to = "images/",blank=True, null=True)
+    blog_url = models.URLField(max_length=60, blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.user.username} Profile'
