@@ -31,9 +31,7 @@
             <th><label for="board-location">위치{{ post.location }}</label></th>
             <td>
               <select id="board-location" name="boardLocation">
-                {% for location in locations %}
                 <option value="{{ location.id }}">{{ location.name }}</option>
-                {% endfor %}
               </select>
             </td>
           </tr>

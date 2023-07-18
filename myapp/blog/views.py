@@ -1,7 +1,11 @@
 from django.shortcuts import render, redirect
 from django.views import View
+from django.contrib.auth import get_user_model
 from .models import Post, Comment
 from .forms import PostForm, CommentForm
+
+
+User = get_user_model()
 
 
 ### Post
@@ -16,7 +20,7 @@ class Write(View):
         return render(request, 'blog/post_form.html', context)
     
     def post(self, request):
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
 
         if form.is_valid():
             post = form.save()
@@ -45,14 +49,18 @@ class Update(View):
     
     def post(self, request, pk):
         post = Post.objects.get(pk=pk)
-        form = PostForm(request.POST)
-        
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post.title = form.cleaned_data['title']
             post.location = form.cleaned_data['location']
-            post.photo = form.cleaned_data['photo']
             post.content = form.cleaned_data['content']
-            post.save()
+            if form.cleaned_data['photo']:
+                post.photo = form.cleaned_data['photo']
+            if 'clear_photo' in request.POST:
+                post.photo.delete()
+            else: print('----------이미지 삭제 구현X---------')
+            form.save()
+            print('-----------save---------------')
             return redirect('blog:detail', pk=pk)
         context = {
             "title": "PostEdit",

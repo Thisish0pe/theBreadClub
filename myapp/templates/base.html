@@ -21,20 +21,21 @@
 				</h1>
 				<ul>
 					<!-- 로그인 -->
-					<li class="profile-img">
-						<a href="#">
-							<img src="./assets/profile.jpg" alt="My Page" />
+					<li>
+						<a href="{% url 'user:register' %}">
+							회원가입
+						</a>
+					</li>
+                    <li>
+						<a href="{% url 'user:login' %}">
+							로그인
 						</a>
 					</li>
 					<li>
-                        <form action="{% url 'blog:write' %}" method="get">
-                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ request.GET.next }}">
-                            <input type="submit" value="글 작성">
+                        <form action="{% url 'blog:write' %}" method="get" class="button">
+                            {% csrf_token %}
+                            <input type="submit" value="Write">
                         </form>
-						<a href="#" class="button">
-							<img src="./assets/icon-modify-white.svg" alt="" />
-							<span>Write</span>
-						</a>
 					</li>
 					<li>
 						<button class="button white">
