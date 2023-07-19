@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from .models import Location, Post, Comment
 from .forms import PostForm, CommentForm
 
@@ -91,14 +92,18 @@ class DetailView(View):
 
 
 ### Search
-class Search(View):
-
+class PostSearchView(View):
     def get(self, request):
-        query = request.GET.get('search')
+        query = request.GET.get('q')
         posts = []
         if query:
-            posts = Post.objects.filter(title__icontains=query)
+            posts = Post.objects.filter(
+                Q(title__icontains=query) |
+                Q(location__icontains=query) |
+                Q(writer__icontains=query)
+            )
         return render(request, 'post_search.html', {'posts': posts})
+
 
 
 ### Comment
