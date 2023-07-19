@@ -16,56 +16,46 @@
 			<div class="max-width">
 				<h1>
 					<a href="./">
-						<img src="./assets/Logo.svg" alt="My Blog" />
+						<img src="" alt="My Blog" />
 					</a>
 				</h1>
 				<ul>
-					<!-- 로그인 -->
+					<!-- 회원가입 -->
 					<li>
 						<a href="{% url 'user:register' %}">
 							회원가입
 						</a>
 					</li>
+                    <!-- /회원가입 -->
+                    <!-- 로그인 -->
                     <li>
 						<a href="{% url 'user:login' %}">
 							로그인
 						</a>
 					</li>
+                    <!-- /로그인 -->
+                    <!-- 로그아웃 -->
+                    <li>
+						<a href="{% url 'user:logout' %}">
+							로그아웃
+						</a>
+					</li>
+                    <!-- /로그아웃 -->
+                    <!-- 프로필 페이지 -->
                     <li>
 						<a href="{% url 'user:profile' %}">
 							My Page
 						</a>
 					</li>
+                    <!-- /프로필 페이지 -->
+                    <!-- 글 작성 -->
 					<li>
                         <form action="{% url 'blog:write' %}" method="get" class="button">
                             {% csrf_token %}
                             <input type="submit" value="Write">
                         </form>
 					</li>
-					<li>
-						<button class="button white">
-							<img src="./assets/icon-logout.svg" alt="" />
-							<span>Logout</span>
-						</button>
-					</li>
-					<!-- //로그인 -->
-
-					<!-- 로그아웃 -->
-					<!--
-					<li>
-						<a href="#" class="button gray">
-							<img src="./assets/icon-login.svg" alt="" />
-							<span>Login</span>
-						</a>
-					</li>
-					<li class="only-pc">
-						<a href="#" class="button gray">
-							<img src="./assets/icon-register.svg" alt="" />
-							<span>Register</span>
-						</a>
-					</li>
-          -->
-					<!--// 로그아웃 -->
+                    <!-- /글 작성 -->
 				</ul>
 			</div>
 		</header>

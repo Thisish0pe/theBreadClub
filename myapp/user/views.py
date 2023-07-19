@@ -68,7 +68,12 @@ class Login(View):
         
 
 ### Logout
+class Logout(View):
 
+    def get(self, request):
+        logout(request)
+        return redirect('/')
+        pass
 
 ### Profile
 class ProfileView(View):

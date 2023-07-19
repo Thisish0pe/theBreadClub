@@ -102,7 +102,7 @@ class Search(View):
                 Q(location__name__icontains=query) |
                 Q(writer__email__icontains=query)
             )
-        return render(request, 'post_search.html', {'posts': posts})
+        return render(request, 'blog/post_search.html', {'posts': posts})
 
 
 ### Comment

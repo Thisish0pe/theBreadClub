@@ -15,10 +15,10 @@
     <table class="table list">
         <colgroup>
           <col style="width: 60px">
-          <col>
-          <col style="width: 100px">
           <col style="width: 120px">
+          <col style="width: 80px">
           <col style="width: 100px">
+          <col style="width: 80px">
         </colgroup>
         <thead>
           <tr>
@@ -32,7 +32,7 @@
         <tbody>
             {% for post in posts reversed%}
             <tr>
-                <td>{{ forloop.counter1 }}</td>
+                <td>{{ forloop.revcounter }}</td>
                 <td><a href="{% url 'blog:detail' pk=post.pk %}">{{ post.title }}</a></td>
                 <td>{{ post.writer }}</td>
                 <td>{{ post.created_at }}</td>
