@@ -12,6 +12,8 @@ urlpatterns = [
     path("detail/<int:pk>/edit/", views.Update.as_view(), name = 'edit'),
     # 글 삭제
     path("detail/<int:pk>/delete/", views.Delete.as_view(), name='delete'),
+    # 검색 기능
+    path("search/" ,views.Search.as_view(), name='search'),
     # 댓글 작성
     path("detail/<int:pk>/comment/write", views.CommentWrite.as_view(), name='cm-write'),
     # 댓글 수정

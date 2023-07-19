@@ -1,15 +1,12 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Location, Post, Comment
 from .forms import PostForm, CommentForm
 
 
-User = get_user_model()
-
-
 ### Post
-class Write(View):
+class Write(LoginRequiredMixin, View):
     
     def get(self, request):
         form = PostForm()
@@ -58,11 +55,10 @@ class Update(View):
             post.content = form.cleaned_data['content']
             if form.cleaned_data['photo']:
                 post.photo = form.cleaned_data['photo']
-            if 'clear_photo' in request.POST:
-                post.photo.delete()
-            else: print('----------이미지 삭제 구현X---------')
+            # if 'clear_photo' in request.POST:
+            #     post.photo.delete()
+            # else: print('----------이미지 삭제 구현X---------')
             form.save()
-            print('-----------save---------------')
             return redirect('blog:detail', pk=pk)
         context = {
             "title": "PostEdit",
@@ -94,8 +90,18 @@ class DetailView(View):
         return render(request, 'blog/post_detail.html', context)
 
 
+### Search
+class Search(View):
+    def get(self, request):
+        post_objs = Post.objects.all().filter(status='active',title__contains=request.GET['keyword']).order_by('-created_at')
+        context = {
+            "posts": post_objs,
+        }
+        return render(request, '/', context)
+
+
 ### Comment
-class CommentWrite(View):
+class CommentWrite(LoginRequiredMixin, View):
 
     def post(self, request, pk):
         form = CommentForm(request.POST)
