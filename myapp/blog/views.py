@@ -92,18 +92,17 @@ class DetailView(View):
 
 
 ### Search
-class PostSearchView(View):
+class Search(View):
     def get(self, request):
-        query = request.GET.get('q')
+        query = request.GET.get('search')
         posts = []
         if query:
             posts = Post.objects.filter(
                 Q(title__icontains=query) |
-                Q(location__icontains=query) |
-                Q(writer__icontains=query)
+                Q(location__name__icontains=query) |
+                Q(writer__email__icontains=query)
             )
         return render(request, 'post_search.html', {'posts': posts})
-
 
 
 ### Comment
