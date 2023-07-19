@@ -22,8 +22,8 @@ class Write(LoginRequiredMixin, View):
         form = PostForm(request.POST, request.FILES)
 
         if form.is_valid():
-            post = form.save()
-            # writer 추후 변경 
+            post = form.save(commit=False)
+            post.writer = request.user
             post.save()
             return redirect('/')
         
@@ -92,12 +92,13 @@ class DetailView(View):
 
 ### Search
 class Search(View):
+
     def get(self, request):
-        post_objs = Post.objects.all().filter(status='active',title__contains=request.GET['keyword']).order_by('-created_at')
-        context = {
-            "posts": post_objs,
-        }
-        return render(request, '/', context)
+        query = request.GET.get('search')
+        posts = []
+        if query:
+            posts = Post.objects.filter(title__icontains=query)
+        return render(request, 'post_search.html', {'posts': posts})
 
 
 ### Comment
@@ -109,8 +110,8 @@ class CommentWrite(LoginRequiredMixin, View):
 
         if form.is_valid():
             content = form.cleaned_data['content']
-            # writer 추후 추가
-            comment = Comment.objects.create(post=post, content=content)
+            writer = request.user
+            comment = Comment.objects.create(post=post, content=content, writer=writer)
             return redirect('blog:detail', pk=post.pk)
         context = {
             "title": "CommentWrite",

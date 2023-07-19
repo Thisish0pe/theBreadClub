@@ -42,7 +42,7 @@
         {% for comment in comments %}
             <li>
                 {{ comment.content }} / {{ comment.created_at }}
-                {% if post_writer == request.user %}
+                {% if comment_writer.username == request.user.username %}
                     <!-- 댓글 수정 버튼 -->
                     <form action="{% url 'blog:cm-edit' pk=comment.pk %}" method="post">
                         {% csrf_token %}

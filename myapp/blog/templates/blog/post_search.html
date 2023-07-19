@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<p class="main-title">검색결과창입니다.</p>
+
+{% if posts %}
+    <table class="table list">
+        <colgroup>
+        <col style="width: 60px">
+        <col>
+        <col style="width: 100px">
+        <col style="width: 120px">
+        <col style="width: 100px">
+        </colgroup>
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>위치</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for post in posts%}
+            <tr>
+                <td>{{0}}</td>
+                <td><a href="{% url 'blog:detail' pk=post.pk %}">{{ post.title }}</a></td>
+                <td>{{ post.writer }}</td>
+                <td>{{ post.created_at }}</td>
+                <td>{{ post.location }}</td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td class="nodata" colspan="5">해당 게시물이 존재하지 않습니다.</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+{% endblock %}
