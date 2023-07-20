@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="main">
+    <h2 class="main-title">프로필 작성하기</h2>
+    <div class="view-header">
+        <p>프로필을 작성해주세요.</p>
+    </div>
+    <div class="view">
+        <br>
+        <form action="{% url 'user:pf-write' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br>
+        <input class="btn" type="submit" value="프로필 생성">
+        </form>
+    </div>
+    
+</div>
+{% endblock %}

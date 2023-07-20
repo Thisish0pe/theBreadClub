@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
-from .fomrs import RegisterForm, LoginForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import get_user_model
+from .fomrs import RegisterForm, LoginForm, ProfileForm
 from .models import Profile
 
+User = get_user_model()
 
 ### Registration
 class Registration(View):
@@ -75,12 +78,36 @@ class Logout(View):
         pass
 
 ### Profile
-class ProfileView(View):
-    
+class ProfileView(LoginRequiredMixin, View):
+
     def get (self, request):
-        profile = Profile.objects.get(user=request.user)
+        profile = Profile.objects.get(user=request.user.pk)
         context = {
             "title": "Profile",
             "profile": profile
         }
         return render(request, 'user/user_profile.html', context)
+
+
+class ProfileWrite(View):
+    
+    def get (self, request):
+        form = ProfileForm()
+        context = {
+            "title":"ProfileWrite",
+            "form":form
+        }
+        return render(request, 'user/post_profile_write.html', context)
+    
+    def post(self, request):
+        form = ProfileForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            profile = form.save()
+            profile.save()
+            return redirect('user:pf-write')
+        
+        context = {
+            "form": form
+        }
+        return render(request, 'user/post_profile_write.html', context)

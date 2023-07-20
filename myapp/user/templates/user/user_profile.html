@@ -2,9 +2,16 @@
 {% load static %}
 
 {% block content %}
-    <p>닉네임:{{ profile.nickname }}</p>
-    {% if post.photo %}
-        <img src="{{ profile.photo.url }}" alt="프로필 사진">
+    {% if posts %}
+        <p>닉네임:{{ profile.nickname }}</p>
+        {% if post.photo %}
+            <img src="{{ profile.photo.url }}" alt="프로필 사진">
+        {% endif %}
+        <p>블로그 주소:{{ profile.blog_url }}</p>
+        <!-- 추가로 수정 버튼 만들기 -->
+    {% else %}
+        <p>등록된 프로필이 없습니다. 프로필을 만들어보세요.</p>
+        <!-- 프로필 생성 버튼 -->
+        <a class="btn" href="{% url 'user:pf-write' %}">프로필 생성</a>
     {% endif %}
-    <p>블로그 주소:{{ profile.blog_url }}</p>
 {% endblock %}

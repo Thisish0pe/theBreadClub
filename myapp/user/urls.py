@@ -13,5 +13,6 @@ urlpatterns = [
     # 프로필 보기
     path("profile/", views.ProfileView.as_view(), name="profile"),
     # 프로필 생성
+    path("profile/write/", views.ProfileWrite.as_view(), name="pf-write"),
     # 프로필 수정
 ]
