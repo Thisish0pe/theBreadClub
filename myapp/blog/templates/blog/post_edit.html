@@ -2,9 +2,21 @@
 {% load static %}
 
 {% block content %}
-<form action="{% url 'blog:edit' pk=post.pk %}" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="수정">
-</form>
+<div class="main">
+    <h2 class="main-title">글 수정하기</h2>
+    <div class="view-header">
+        <p>수정할 내용을 입력 해주세요.</p>
+    </div>
+    <div class="view">
+        <br>
+        <form action="{% url 'blog:edit' pk=post.pk %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <br>
+            <input class="btn" type="submit" value="수정">
+        </form>
+    </div>
+    
+</div>
+
 {% endblock %}

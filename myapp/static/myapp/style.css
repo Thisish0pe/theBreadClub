@@ -49,7 +49,7 @@ body {
 	border-bottom: 1px solid #ddd;
 }
 .header h1 a {
-	color: black;
+	color: #a46628;
 }
 .header-click a,
 .header-click button,
@@ -91,9 +91,6 @@ body {
 .main-title {
 	margin: 60px 0 10px 0;
 }
-.main-desc {
-	margin-bottom: 20px;
-}
 .main-desc strong {
 	color: royalblue;
 }
@@ -104,10 +101,10 @@ body {
 	text-align: right;
 }
 .btn {
-	background-color: #eee;
+	background-color: #eee6c4;
 	width: 80px;
 	height: 32px;
-	border: 1px solid #ddd;
+	border: 1px solid #eee6c4;
 	border-radius: 4px;
 	display: inline-flex;
 	align-items: center;
@@ -116,10 +113,10 @@ body {
 	font: inherit;
 }
 .btn-write{
-    background-color: #eee;
+    background-color: #eee6c4;
 	width: 80px;
 	height: 32px;
-	border: 1px solid #ddd;
+	border: 1px solid #eee6c4;
 	border-radius: 4px;
 	display: inline-flex;
 	align-items: center;
@@ -174,12 +171,13 @@ body {
 /* 검색 */
 .search-form {
 	height: 32px;
-	border: 1px solid #ddd;
 	border-radius: 4px;
 	overflow: hidden;
 	display: flex;
+    justify-content: center;
 	align-items: center;
 	box-sizing: border-box;
+    margin-top: 20px;
 }
 
 .search-form input[type="search"],
@@ -284,7 +282,7 @@ body {
 	resize: none;
 	border: 1px solid #ccc;
 	border-radius: 4px;
-	width: 100%;
+	width: 500px;
 	height: 400px;
 }
 
@@ -295,7 +293,7 @@ body {
 .write select {
 	border: 1px solid #ccc;
 	border-radius: 4px;
-	width: 200px;
+	width: 500px;
 	height: 32px;
 }
 
@@ -331,8 +329,7 @@ body {
 .submit-button {
 	width: 100%;
 	height: 40px;
-	background-color: royalblue;
-	color: white;
+	background-color: #eee6c4;
 	border-width: 0;
 	border-radius: 4px;
 	font: inherit;

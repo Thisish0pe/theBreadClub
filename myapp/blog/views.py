@@ -59,7 +59,7 @@ class Update(View):
             # if 'clear_photo' in request.POST:
             #     post.photo.delete()
             # else: print('----------이미지 삭제 구현X---------')
-            form.save()
+            post.save()
             return redirect('blog:detail', pk=pk)
         context = {
             "title": "PostEdit",

@@ -36,4 +36,10 @@
             {% endif %}
         </tbody>
       </table>
+      <!-- 글 작성 -->
+      <form action="{% url 'blog:write' %}" method="get">
+        {% csrf_token %}
+        <input type="submit" value="글작성" class="btn-write">
+      </form>
+      <!-- /글 작성 -->
 {% endblock %}
