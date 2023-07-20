@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .fomrs import RegisterForm, LoginForm
 from .models import Profile
@@ -54,7 +53,7 @@ class Login(View):
         if form.is_valid():
             email = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            user = authenticate(username=email, password=password) # True, False
+            user = authenticate(username=email, password=password)
             
             if user:
                 login(request, user)

@@ -2,9 +2,9 @@
 {% load static %}
 
 {% block content %}
-    <p>{{ profile.nickname }}</p>
+    <p>닉네임:{{ profile.nickname }}</p>
     {% if post.photo %}
-        <img src="{{ post.photo.url }}" alt="사진">
+        <img src="{{ profile.photo.url }}" alt="사진">
     {% endif %}
-    <p>{{ profile.blog_url }}</p>
+    <p>블로그 주소:{{ profile.blog_url }}</p>
 {% endblock %}

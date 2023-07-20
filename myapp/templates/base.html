@@ -11,66 +11,43 @@
     </title>
 </head>
 <body>
-    <!-- header -->
-		<header>
-			<div class="max-width">
-				<h1>
-					<a href="./">
-						<img src="" alt="My Blog" />
-					</a>
-				</h1>
-				<ul>
-					<!-- 회원가입 -->
-					<li>
-						<a href="{% url 'user:register' %}">
-							회원가입
-						</a>
-					</li>
-                    <!-- /회원가입 -->
-                    <!-- 로그인 -->
-                    <li>
-						<a href="{% url 'user:login' %}">
-							로그인
-						</a>
-					</li>
-                    <!-- /로그인 -->
-                    <!-- 로그아웃 -->
-                    <li>
-						<a href="{% url 'user:logout' %}">
-							로그아웃
-						</a>
-					</li>
-                    <!-- /로그아웃 -->
-                    <!-- 프로필 페이지 -->
-                    <li>
-						<a href="{% url 'user:profile' %}">
-							My Page
-						</a>
-					</li>
-                    <!-- /프로필 페이지 -->
-                    <!-- 글 작성 -->
-					<li>
-                        <form action="{% url 'blog:write' %}" method="get" class="button">
-                            {% csrf_token %}
-                            <input type="submit" value="Write">
-                        </form>
-					</li>
-                    <!-- /글 작성 -->
-				</ul>
-			</div>
-		</header>
-		<!--// header -->
+<!-- header -->
+  <div class="header">
+    <h1>
+        <a href="{% url 'index' %}"> The bread club</a>
+    </h1>
+    <div class="header-click">
+      <a href="{% url 'user:login' %}">
+        로그인
+      </a>
+      <a href="{% url 'user:register' %}">
+            회원가입
+      </a>
+      <a href="{% url 'user:profile' %}">
+        마이페이지
+      </a>
+      <a href="{% url 'user:logout' %}">
+        로그아웃
+      </a>
+    </div>
+  </div>
+  <!-- // header -->
 
-		<!-- banner -->
-		<div class="banner" style="background-image: url(./images/post-background6.jpg)">
-			<div class="max-width">
-				<div class="banner-contents">
-					<p class="today">May <em>25</em> Wednesday</p>
-				</div>
-			</div>
-		</div>
-		<!-- //banner -->
-    {% block content %}
-    {% endblock %}
+  <!-- 글 작성 -->
+  <form action="{% url 'blog:write' %}" method="get">
+    {% csrf_token %}
+    <input type="submit" value="글작성" class="btn">
+  </form>
+  <!-- /글 작성 -->
+
+  <!-- 검색창 -->
+  <form class="search-form" action="{% url 'blog:search' %}" method="GET">
+    {% csrf_token %}
+    <input type="text" name="search" placeholder="Search">
+    <input type="submit" value="검색" class="btn">
+  </form>
+  <!-- //검색창 -->
+  {% block content %}
+  {% endblock %}
 </body>
 </html>

@@ -153,3 +153,9 @@ class CommentDelete(View):
         post_id = comment.post.id
         comment.delete()
         return redirect('blog:detail', pk=post_id)
+
+
+### Like
+class LikeToggle(LoginRequiredMixin, View):
+    def post(self, request, pk):
+        pass
