@@ -2,41 +2,48 @@
 {% load static %}
 
 {% block content %}
-<p class="main-title">검색결과창입니다.</p>
-
 {% if posts %}
     <table class="table list">
         <colgroup>
-        <col style="width: 60px">
-        <col>
-        <col style="width: 100px">
-        <col style="width: 120px">
-        <col style="width: 100px">
+          <col style="width: 30px">
+          <col style="width: 120px">
+          <col style="width: 80px">
+          <col style="width: 100px">
+          <col style="width: 60px">
+          <col style="width: 60px">
         </colgroup>
         <thead>
-        <tr>
+          <tr>
             <th>번호</th>
             <th>제목</th>
             <th>작성자</th>
             <th>작성일</th>
             <th>위치</th>
-        </tr>
+            <th>조회수</th>
+          </tr>
         </thead>
         <tbody>
-            {% for post in posts%}
+            {% for post in posts reversed%}
             <tr>
-                <td>{{0}}</td>
+                <td>{{ forloop.revcounter }}</td>
                 <td><a href="{% url 'blog:detail' pk=post.pk %}">{{ post.title }}</a></td>
                 <td>{{ post.writer }}</td>
                 <td>{{ post.created_at }}</td>
                 <td>{{ post.location }}</td>
+                <td>{{ post.hit }}</td>
             </tr>
             {% endfor %}
             {% else %}
             <tr>
-                <td class="nodata" colspan="5">해당 게시물이 존재하지 않습니다.</td>
+                <td class="nodata" colspan="5">등록된 게시물이 없습니다.</td>
             </tr>
             {% endif %}
         </tbody>
-    </table>
+      </table>
+      <!-- 글 작성 -->
+      <form action="{% url 'blog:write' %}" method="get">
+        {% csrf_token %}
+        <input type="submit" value="글작성" class="btn-write">
+      </form>
+      <!-- /글 작성 -->
 {% endblock %}

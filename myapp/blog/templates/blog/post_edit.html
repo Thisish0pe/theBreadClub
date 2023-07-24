@@ -45,7 +45,11 @@
                     <td>
                     <select name="location" id="id_location" >
                         {% for location in locations %}
-                        <option value="{{ location.id }}">{{ location.name }}</option>
+                            {% if location.id == post.location.id %}
+                                <option value="{{ location.id }}" selected>{{ location.name }}</option>
+                            {% else %}
+                                <option value="{{ location.id }}">{{ location.name }}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
                     </td>
@@ -59,7 +63,7 @@
                 <tr>
                     <th><label for="id_photo">첨부된 파일</label></th>
                     <td>
-                    <a href="{{ blog_post.id.photo }}"></a>
+                    <a href="{{ post.photo.url }}">{{ post.photo }}</a>
                     <input type="checkbox" name="photo-clear" id="photo-clear_id">
                     <label for="photo-clear_id">취소</label>
                     </td>

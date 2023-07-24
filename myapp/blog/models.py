@@ -29,6 +29,7 @@ class Post(models.Model):
     def update_counter(self):
         self.hit += 1
         self.save()
+        return self.hit
 
 
 class Comment(models.Model):
