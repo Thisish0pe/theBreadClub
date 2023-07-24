@@ -5,11 +5,12 @@
 {% if posts %}
     <table class="table list">
         <colgroup>
-          <col style="width: 60px">
+          <col style="width: 30px">
           <col style="width: 120px">
           <col style="width: 80px">
           <col style="width: 100px">
-          <col style="width: 80px">
+          <col style="width: 60px">
+          <col style="width: 60px">
         </colgroup>
         <thead>
           <tr>
@@ -18,6 +19,7 @@
             <th>작성자</th>
             <th>작성일</th>
             <th>위치</th>
+            <th>조회수</th>
           </tr>
         </thead>
         <tbody>
@@ -28,6 +30,7 @@
                 <td>{{ post.writer }}</td>
                 <td>{{ post.created_at }}</td>
                 <td>{{ post.location }}</td>
+                <td>{{ post.hit }}</td>
             </tr>
             {% endfor %}
             {% else %}

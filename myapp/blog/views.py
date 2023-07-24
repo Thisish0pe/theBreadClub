@@ -39,10 +39,12 @@ class Update(View):
 
     def get(self, request, pk):
         post = Post.objects.get(pk=pk)
-        form = PostForm(initial={'title': post.title, 'location': post.location, 'photo':post.photo,'content':post.content})
+        form = PostForm(initial={'title': post.title, 'photo':post.photo,'content':post.content})
+        locations = Location.objects.all()
         context = {
             "title": "PostEdit",
             "form": form,
+            "locations": locations,
             "post": post
         }
         return render(request, 'blog/post_edit.html', context)
