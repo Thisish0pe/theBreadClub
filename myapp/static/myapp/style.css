@@ -323,9 +323,9 @@ body {
 	height: 400px;
 }
 
-#board-title {
+/* #board-title {
 	width: 100%;
-}
+} */
 
 .write select {
 	border: 1px solid #ccc;

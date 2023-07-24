@@ -16,4 +16,32 @@
           </form>
         </div>
       </div>
+
+      <!-- css 적용 -->
+      <div class="main">
+        <div class="container">
+          <h2 class="title">회원가입</h2>
+          <p class="description">
+            원활한 서비스를 이용을 위해 회원가입을 해주세요
+          </p>
+    
+          <form class="login" action="{% url 'user:login' %}" method="post">
+            {% csrf_token %}
+            <div>
+              <label class="label-width" for="user-id">아이디{{ login.email }}</label>
+              <input type="text" id="user-id" name="username" required>
+            </div>
+            <div>
+              <label class="label-width" for="user-pw">비밀번호{{ login.password }}</label>
+              <input type="password" id="user-pw" name="password" required>
+            </div>
+            <div>
+              <input type="checkbox" id="save-id" name="saveId">
+              <label for="save-id">아이디 저장</label>
+            </div>
+            <input class="submit-button"  type="submit" value="로그인">
+          </form>
+        </div>
+      </div>
+
 {% endblock %}

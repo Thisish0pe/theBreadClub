@@ -19,4 +19,54 @@
     
 </div>
 
+
+<!-- css 적용해보기 -->
+<div class="main">
+    <h2 class="main-title">글 수정하기</h2>
+    <div class="view-header">
+        <p>수정할 내용을 입력 해주세요.</p>
+    </div>
+    
+    <div class="view">
+        <form action="{% url 'blog:write' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table class="table write">
+                <colgroup>
+                <col style="width: 120px">
+                <col>
+                </colgroup>
+                <tbody>
+                <tr>
+                    <th><label for="title">제목</label></th>
+                    <td><input type="text" id="board-title" name="title" value="{{ post.title }}"></td>
+                </tr>
+                <tr>
+                    <th><label for="location">위치</label></th>
+                    <td>
+                    <select id="location" name="location">
+                        {% for location in locations %}
+                        <option value="{{ location.id }}">{{ location.name }}</option>
+                        {% endfor %}
+                    </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="board-content">내용</label></th>
+                    <td>
+                    <textarea id="board-content" name="content">{{ post.content }}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="board-file">파일첨부</label></th>
+                    <td>
+                    <input type="file" id="board-file" name= "photo" value="{{ post.photo }}">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="btn-group">
+                <input class="btn" type="submit" value="수정">
+            </div>
+        </form>
+    </div>
 {% endblock %}
