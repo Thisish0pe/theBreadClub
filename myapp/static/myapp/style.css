@@ -100,6 +100,10 @@ body {
 	margin-top: 20px;
 	text-align: right;
 }
+.btn-group-comment{
+	display: flex;
+    gap: 10px;
+}
 .btn {
 	background-color: #eee6c4;
 	width: 80px;
@@ -319,18 +323,18 @@ body {
 	resize: none;
 	border: 1px solid #ccc;
 	border-radius: 4px;
-	width: 500px;
+	width: 100%;
 	height: 400px;
 }
 
-/* #board-title {
+#board-title {
 	width: 100%;
-} */
+}
 
 .write select {
 	border: 1px solid #ccc;
 	border-radius: 4px;
-	width: 500px;
+	width: 100%;
 	height: 32px;
 }
 

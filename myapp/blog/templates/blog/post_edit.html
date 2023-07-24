@@ -28,7 +28,7 @@
     </div>
     
     <div class="view">
-        <form action="{% url 'blog:write' %}" method="post" enctype="multipart/form-data">
+        <form action="{% url 'blog:edit' pk=post.pk %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <table class="table write">
                 <colgroup>
@@ -37,13 +37,13 @@
                 </colgroup>
                 <tbody>
                 <tr>
-                    <th><label for="title">제목</label></th>
-                    <td><input type="text" id="board-title" name="title" value="{{ post.title }}"></td>
+                    <th><label for="id_title">제목</label></th>
+                    <td><input type="text" name="title" value="{{ post.title }}" required id="id_title" ></td>
                 </tr>
                 <tr>
                     <th><label for="location">위치</label></th>
                     <td>
-                    <select id="location" name="location">
+                    <select name="location" id="id_location" >
                         {% for location in locations %}
                         <option value="{{ location.id }}">{{ location.name }}</option>
                         {% endfor %}
@@ -51,15 +51,23 @@
                     </td>
                 </tr>
                 <tr>
-                    <th><label for="board-content">내용</label></th>
+                    <th><label for="id_content">내용</label></th>
                     <td>
-                    <textarea id="board-content" name="content">{{ post.content }}</textarea>
+                    <textarea id="id_content" name="content" required>{{ post.content }}</textarea>
                     </td>
                 </tr>
                 <tr>
-                    <th><label for="board-file">파일첨부</label></th>
+                    <th><label for="id_photo">첨부된 파일</label></th>
                     <td>
-                    <input type="file" id="board-file" name= "photo" value="{{ post.photo }}">
+                    <a href="{{ post.photo }}"></a>
+                    <input type="checkbox" name="photo-clear" id="photo-clear_id">
+                    <label for="photo-clear_id">취소</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="board-file">변경 파일첨부</label></th>
+                    <td>
+                        <input type="file" name="photo" accept="image/*" id="id_photo">
                     </td>
                 </tr>
                 </tbody>

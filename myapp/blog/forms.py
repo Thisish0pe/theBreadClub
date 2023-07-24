@@ -13,3 +13,6 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['content']
+        widgets = {
+            'content': forms.TextInput(attrs={'placeholder': '댓글을 입력해주세요.'})
+        }

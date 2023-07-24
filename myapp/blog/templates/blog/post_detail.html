@@ -49,16 +49,19 @@
                         {{ comment.content }} / {{ comment.created_at }} / {{ comment.writer }}
                         {% if comment.writer == request.user %}
                             <!-- 댓글 수정 버튼 -->
-                            <form action="{% url 'blog:cm-edit' pk=comment.pk %}" method="post">
+                            <div class="btn-group-comment">
+                              <form action="{% url 'blog:cm-edit' pk=comment.pk %}" method="post">
                                 {% csrf_token %}
                                 {{ comment_form.as_p }}
                                 <input class="btn" type="submit" value="댓글수정">
-                            </form>
-                            <!-- 댓글 삭제 버튼 -->
-                            <form class="btn" action="{% url 'blog:cm-delete' pk=comment.pk %}" method="post">
-                                {% csrf_token %}
-                                <input type="submit" value="댓글삭제" class="btn">
-                            </form>
+                              </form>
+                              <!-- 댓글 삭제 버튼 -->
+                              <form class="btn" action="{% url 'blog:cm-delete' pk=comment.pk %}" method="post">
+                                  {% csrf_token %}
+                                  <input type="submit" value="댓글삭제" class="btn">
+                              </form>
+                            </div>
+                            
                         {% endif %}
                     </li>
                 {% endfor %}
