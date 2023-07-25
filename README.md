@@ -10,7 +10,8 @@
 * 댓글 CRD
 * 게시글 제목, 작성자, 도시 카테고리 검색 기능
 * 회원가입 및 로그인
-* 게시글 및 댓글 작성, 수정, 삭제 권한 부여
+* 유저 권한 부여 - 게시글 및 댓글 작성, 수정, 삭제
+* 게시글 조회 수
 
 ## 2. 개발 환경 및 일정
 ### 2.1 개발 환경
@@ -77,31 +78,37 @@
 ## 4. 상세 페이지 설명
 ### 메인페이지
 * 로그인 여부 상관없이 모든 유저가 게시글 및 댓글 열람 가능
-![the bread club_index](https://github.com/Thisish0pe/theBreadClub/assets/130428546/393734cf-1417-4b76-9c67-235d8903d1c6)
+![thebreadclub_메인창](https://github.com/Thisish0pe/theBreadClub/assets/130428546/2063c31f-f092-460b-b635-1abae0f04098)
+
 
 ### 게시글 작성 및 수정 페이지
 * 로그인한 유저만 가능한 페이지
 * 작성자만 게시글 수정, 삭제 가능
 * 로그인하지 않은 유저의 경우, 로그인 페이지 창 렌더링
-<img width="1592" alt="the bread club_write edit" src="https://github.com/Thisish0pe/theBreadClub/assets/130428546/70da1d36-ac7c-425d-9389-c4f34654eeae">
+<img width="1355" alt="thebreadclub_글 작성 및 수정" src="https://github.com/Thisish0pe/theBreadClub/assets/130428546/faa0d2d7-fb4e-4f15-8576-bb4b0e06e540">
+
 
 ### 댓글 작성 및 수정 페이지
 * 로그인한 유저만 가능한 페이지
 * 작성자만 댓글 수정, 삭제 가능
-![the bread club_comment](https://github.com/Thisish0pe/theBreadClub/assets/130428546/d11cb9c4-9741-4822-b58f-56ccbab5e163)
+![thebreadclub_댓글창](https://github.com/Thisish0pe/theBreadClub/assets/130428546/7461c93f-8016-47b2-a53f-857be00b7994)
+
 
 ### 로그인 및 회원가입 페이지
 * 사전에 로그인되어있는 유저의 경우, 메인페이지 렌더링
-<img width="1357" alt="the bread club_join login" src="https://github.com/Thisish0pe/theBreadClub/assets/130428546/9c18df40-7a6f-492f-aa4b-b4470b6005ec">
+<img width="1686" alt="thebreadclub_회원가입 및 로그인" src="https://github.com/Thisish0pe/theBreadClub/assets/130428546/ccd72c9b-dbcf-4396-b9c9-5f541dc8d61f">
 
-## 5. 개선점
+## 5. 전체적인 기능
+gif 준비중입니다 :)
+
+## 6. 개선점
 * 사진 업로드 시, 사진 크기를 유저가 한 번에 볼 수 있도록 줄이고, 여러 사진을 원하는 위치에 업로드할 수 있는 기능이 필요합니다.
 
 * 개인 프로필 페이지 CRUD 구현 및 좋아요 기능, 대댓글 구현을 추가하여 본인을 소개하고 유저들끼리의 활발한 커뮤니케이션이 가능한 장이 될 수 있도록 하여 웹이 더욱 활발하게 사용될 수 있도록 하는 것이 필요합니다.
 
 * 비밀번호 수정을 가능하게 하여 보안성을 높이는 것이 필요합니다.
 
-## 6. 느낀점
+## 7. 느낀점
 * Django 와 친해지는 계기가 되었습니다.
 
     * 배운 것을 토대로 새로운 기능을 구현하는 값진 경험이었습니다. 사진 업로드, 검색창 구현 등 처음 시도해보는 기능들을 구현하는 과정에서 공식문서와 친해지고, 구글링하는 법을 익힐 수 있는 값진 경험이었습니다.
